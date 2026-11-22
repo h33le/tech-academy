@@ -3,99 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أكاديميةالتقنية</title>
+<title>أكاديمية التقنية</title>
 <style>
-body {
-margin: 0;
-font-family: Arial, sans-serif;
-background: #f4f7fc;
-color: #172554;
-}
-header {
-background: white;
-padding: 20px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.logo {
-font-size: 23px;
-font-weight: bold;
-color: #1764db;
-}
-.hero {
-background: linear-gradient(135deg,#0753bd,#12347b);
-color: white;
-text-align: center;
-padding: 80px 20px;
-}
-.hero h1 {
-font-size: 35px;
-}
-.hero p {
-font-size: 18px;
-line-height: 2;
-}
-.btn {
-background: white;
-color: #0753bd;
-padding: 14px 25px;
-border-radius: 10px;
-text-decoration: none;
-}
-section {
-padding: 45px 7%;
-text-align: center;
-}
-.cards {
-display: grid;
-grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-gap: 20px;
-}
-.card {
-background: white;
-padding: 25px;
-border-radius: 15px;
-box-shadow: 0 4px 15px #dce4f2;
-}
-.card h3 {
-color: #1764db;
-}
-footer {
-background: #102b58;
-color: white;
-text-align: center;
-padding: 25px;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:#172554}
+header{background:white;padding:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{font-size:23px;font-weight:bold;color:#1764db}
+nav{display:flex;flex-wrap:wrap;gap:12px}
+nav a{color:#1764db;text-decoration:none;font-weight:bold;cursor:pointer}
+.hero{background:linear-gradient(135deg,#0753bd,#12347b);color:white;text-align:center;padding:80px 20px}
+.hero h1{font-size:35px}
+.hero p{font-size:18px;line-height:2}
+.btn{display:inline-block;background:white;color:#0753bd;padding:14px 25px;border-radius:10px;text-decoration:none;border:0;cursor:pointer;font-weight:bold;margin:6px}
+.blue{background:#1764db;color:white}
+section{padding:45px 7%;text-align:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 15px #dce4f2}
+.card h3{color:#1764db}
+.card button{background:#1764db;color:white;border:0;border-radius:8px;padding:12px 20px;cursor:pointer}
+.page{display:none;min-height:65vh}
+.page.active{display:block}
+.quiz-box{background:white;max-width:650px;margin:20px auto;padding:25px;border-radius:15px;text-align:right}
+.option{display:block;padding:13px;margin:10px 0;background:#edf3ff;border-radius:8px;cursor:pointer}
+.option input{margin-left:8px}
+.lesson{text-align:right;line-height:2}
+#result{font-size:22px;font-weight:bold;color:#1764db}
+footer{background:#102b58;color:white;text-align:center;padding:25px}
 </style>
 </head>
 <body>
+
 <header>
 <div class="logo">أكاديمية التقنية 💙</div>
+<nav>
+<a onclick="showPage('home')">الرئيسية</a>
+<a onclick="showPage('quizzes')">الاختبارات</a>
+<a onclick="showPage('lessons')">الملخصات</a>
+<a onclick="showPage('grades')">درجاتي</a>
+<a onclick="showPage('certificates')">الشهادات</a>
+</nav>
 </header>
+
+<div id="home" class="page active">
 <div class="hero">
 <h1>مستقبلك يبدأ من هنا</h1>
 <p>تعلم التقنية واختبر مهاراتك وتابع إنجازاتك في مكان واحد.</p>
-<a class="btn" href="#services">اكتشف الأكاديمية</a>
+<button class="btn" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">اكتشف الأكاديمية</button>
 </div>
+
 <section id="services">
 <h2>ماذا تقدم الأكاديمية؟</h2>
 <div class="cards">
 <div class="card">
 <h3>📝 اختبارات تفاعلية</h3>
 <p>اختبر معلوماتك وطوّر مهاراتك.</p>
+<button onclick="showPage('quizzes')">ابدأ الاختبارات</button>
 </div>
 <div class="card">
 <h3>📚 ملخصات تعليمية</h3>
-<p>ملفات وملخصات تساعدك على التعلم.</p>
+<p>ملخصات تساعدك على التعلم.</p>
+<button onclick="showPage('lessons')">افتح الملخصات</button>
 </div>
 <div class="card">
 <h3>📊 متابعة الدرجات</h3>
 <p>تابع مستواك وإنجازاتك.</p>
+<button onclick="showPage('grades')">عرض درجاتي</button>
 </div>
 <div class="card">
 <h3>🎓 الشهادات</h3>
-<p>شهادات إتمام الدورات.</p>
+<p>شهادات إتمام تجريبية.</p>
+<button onclick="showPage('certificates')">عرض الشهادات</button>
 </div>
 </div>
 </section>
@@ -103,8 +80,177 @@ padding: 25px;
 <h2>عن أكاديمية التقنية</h2>
 <p>منصة تعليمية عربية لتطوير مهارات الطلاب التقنية.</p>
 </section>
+</div>
+
+<section id="quizzes" class="page">
+<h2>📝 الاختبارات التفاعلية</h2>
+<p>اختر الاختبار المناسب لك</p>
+<div class="cards">
+<div class="card">
+<h3>أساسيات الحاسب</h3>
+<button onclick="startQuiz('computer')">ابدأ الاختبار</button>
+</div>
+<div class="card">
+<h3>أساسيات الإنترنت</h3>
+<button onclick="startQuiz('internet')">ابدأ الاختبار</button>
+</div>
+<div class="card">
+<h3>الأمن السيبراني</h3>
+<button onclick="startQuiz('security')">ابدأ الاختبار</button>
+</div>
+<div class="card">
+<h3>البرمجة</h3>
+<button onclick="startQuiz('coding')">ابدأ الاختبار</button>
+</div>
+</div>
+<div id="quizArea"></div>
+</section>
+
+<section id="lessons" class="page">
+<h2>📚 الملخصات التعليمية</h2>
+<div class="cards">
+<div class="card">
+<h3>أساسيات الحاسب</h3>
+<button onclick="openLesson('computer')">قراءة الملخص</button>
+</div>
+<div class="card">
+<h3>أساسيات الإنترنت</h3>
+<button onclick="openLesson('internet')">قراءة الملخص</button>
+</div>
+<div class="card">
+<h3>الأمن السيبراني</h3>
+<button onclick="openLesson('security')">قراءة الملخص</button>
+</div>
+<div class="card">
+<h3>البرمجة</h3>
+<button onclick="openLesson('coding')">قراءة الملخص</button>
+</div>
+</div>
+<div id="lessonArea"></div>
+</section>
+
+<section id="grades" class="page">
+<h2>📊 درجاتي وإنجازاتي</h2>
+<div class="card" id="gradesArea"></div>
+</section>
+
+<section id="certificates" class="page">
+<h2>🎓 شهاداتي</h2>
+<p>احصل على شهادة تجريبية عند تحقيق 70% أو أكثر في أحد الاختبارات.</p>
+<div class="card" id="certificateArea"></div>
+</section>
+
 <footer>
 جميع الحقوق محفوظة ©️ أكاديمية التقنية 2026
 </footer>
+
+<script>
+const names={
+computer:"أساسيات الحاسب",
+internet:"أساسيات الإنترنت",
+security:"الأمن السيبراني",
+coding:"البرمجة"
+};
+
+const quizzes={
+computer:[
+["ما هو المعالج؟",["وحدة معالجة البيانات","شاشة العرض","لوحة المفاتيح"],0],
+["ما وظيفة ذاكرة RAM؟",["الطباعة","التخزين المؤقت للبيانات","الاتصال بالإنترنت"],1],
+["أي جهاز يستخدم لإدخال النصوص؟",["الشاشة","السماعة","لوحة المفاتيح"],2],
+["ما نظام التشغيل؟",["برنامج يدير الجهاز","نوع طابعة","قطعة كهربائية"],0],
+["ما وظيفة القرص الصلب؟",["عرض الصور فقط","تخزين الملفات","رفع الصوت"],1]
+],
+internet:[
+["ما المقصود بالإنترنت؟",["شبكة عالمية","برنامج رسم","نوع شاشة"],0],
+["أي برنامج يستخدم لتصفح المواقع؟",["الحاسبة","المتصفح","الرسام"],1],
+["ماذا يعني HTTPS؟",["نوع صورة","لغة برمجة","اتصال ويب مشفر"],2],
+["ما وظيفة محرك البحث؟",["البحث عن المعلومات","إصلاح الشاشة","شحن الجهاز"],0],
+["ما البريد الإلكتروني؟",["نوع معالج","وسيلة لتبادل الرسائل","ذاكرة تخزين"],1]
+],
+security:[
+["ما كلمة المرور الأقوى؟",["123456","password","T9!kP4@z"],2],
+["ما التصيد الإلكتروني؟",["محاولة سرقة المعلومات بالخداع","تحديث النظام","تسريع الإنترنت"],0],
+["ما فائدة التحقق بخطوتين؟",["حذف الملفات","زيادة حماية الحساب","إيقاف الإنترنت"],1],
+["ماذا تفعل عند وصول رابط مشبوه؟",["تفتحه مباشرة","ترسله للجميع","تتجنب فتحه وتتحقق من مصدره"],2],
+["لماذا نحدّث البرامج؟",["لإصلاح الثغرات وتحسين الأمان","لتقليل الأمان","لحذف الحسابات"],0]
+],
+coding:[
+["ما البرمجة؟",["تصميم الأجهزة فقط","كتابة تعليمات للحاسب","توصيل الكهرباء"],1],
+["أي لغة تستخدم في صفحات الويب للتفاعل؟",["JavaScript","JPEG","MP3"],0],
+["ما المتغير؟",["نوع شاشة","وصلة إنترنت","مكان لتخزين قيمة"],2],
+["ما فائدة الشرط if؟",["طباعة الأوراق","تنفيذ أمر عند تحقق شرط","إغلاق الحاسب"],1],
+["ما وظيفة الحلقة التكرارية؟",["تكرار تنفيذ تعليمات","حذف المتصفح","تغيير الشاشة"],0]
+]
+};
+
+const lessons={
+computer:"الحاسب جهاز إلكتروني يستقبل البيانات ويعالجها ويعرض النتائج. من مكوناته المعالج CPU المسؤول عن تنفيذ التعليمات، وذاكرة RAM التي تحتفظ بالبيانات مؤقتًا، ووحدات التخزين التي تحفظ الملفات. نظام التشغيل يدير البرامج والأجهزة.",
+internet:"الإنترنت شبكة عالمية تربط الأجهزة. نستخدم المتصفح لفتح المواقع ومحركات البحث للوصول إلى المعلومات. يساعد بروتوكول HTTPS على تشفير الاتصال بين المتصفح والموقع، لكن يجب التأكد أيضًا من موثوقية الموقع.",
+security:"الأمن السيبراني يهدف إلى حماية الأجهزة والمعلومات. استخدم كلمات مرور قوية ومختلفة، وفعّل التحقق بخطوتين، وتجنب الروابط المشبوهة. حافظ على تحديث البرامج ولا تشارك رموز التحقق مع الآخرين.",
+coding:"البرمجة هي كتابة تعليمات ينفذها الحاسب. HTML تنظم محتوى صفحات الويب، وCSS تتحكم في التصميم، وJavaScript تضيف التفاعل. تستخدم المتغيرات لتخزين القيم، والشروط لاتخاذ القرارات، والحلقات لتكرار التعليمات."
+};
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+if(id==="grades")showGrades();
+if(id==="certificates")showCertificates();
+window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function startQuiz(type){
+let questions=quizzes[type];
+let html='<div class="quiz-box"><h2>'+names[type]+'</h2><form id="quizForm">';
+questions.forEach((q,i)=>{
+html+='<h3>'+(i+1)+'. '+q[0]+'</h3>';
+q[1].forEach((answer,j)=>{
+html+='<label class="option"><input type="radio" name="q'+i+'" value="'+j+'">'+answer+'</label>';
+});
+});
+html+='<button type="submit" class="btn blue">إنهاء الاختبار</button></form><div id="result"></div></div>';
+document.getElementById("quizArea").innerHTML=html;
+document.getElementById("quizForm").onsubmit=function(e){
+e.preventDefault();
+let score=0;
+for(let i=0;i<questions.length;i++){
+let selected=document.querySelector('input[name="q'+i+'"]:checked');
+if(!selected){alert("الرجاء الإجابة عن جميع الأسئلة");return;}
+if(Number(selected.value)===questions[i][2])score++;
+}
+let percent=Math.round(score/questions.length*100);
+let grades=JSON.parse(localStorage.getItem("academyGrades")||"{}");
+grades[type]=Math.max(grades[type]||0,percent);
+localStorage.setItem("academyGrades",JSON.stringify(grades));
+document.getElementById("result").innerHTML="درجتك: "+score+" من "+questions.length+" ("+percent+"%)<p>"+(percent>=70?"أحسنت! لقد اجتزت الاختبار 🎉":"حاول مرة أخرى لتحسين نتيجتك 💪")+"</p>";
+};
+document.getElementById("quizArea").scrollIntoView({behavior:"smooth"});
+}
+
+function openLesson(type){
+document.getElementById("lessonArea").innerHTML=
+'<div class="card lesson"><h2>'+names[type]+'</h2><p>'+lessons[type]+'</p><button onclick="showPage(\'quizzes\');startQuiz(\''+type+'\')">اختبر معلوماتك</button></div>';
+document.getElementById("lessonArea").scrollIntoView({behavior:"smooth"});
+}
+
+function showGrades(){
+let grades=JSON.parse(localStorage.getItem("academyGrades")||"{}");
+let html="";
+Object.keys(names).forEach(type=>{
+html+="<p><strong>"+names[type]+":</strong> "+(grades[type]===undefined?"لم تختبر بعد":grades[type]+"%")+"</p>";
+});
+document.getElementById("gradesArea").innerHTML=html;
+}
+
+function showCertificates(){
+let grades=JSON.parse(localStorage.getItem("academyGrades")||"{}");
+let html="";
+Object.keys(names).forEach(type=>{
+if(grades[type]>=70){
+html+='<div class="card"><h3>شهادة إتمام تجريبية</h3><p>أتممت اختبار '+names[type]+' بنجاح</p><p>الدرجة: '+grades[type]+'%</p><button onclick="window.print()">طباعة الشهادة</button></div>';
+}
+});
+document.getElementById("certificateArea").innerHTML=html||"لم تحصل على شهادة بعد. اجتز أحد الاختبارات بنسبة 70% أو أكثر.";
+}
+</script>
 </body>
 </html>
